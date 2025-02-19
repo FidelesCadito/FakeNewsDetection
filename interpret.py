@@ -1,0 +1,12 @@
+import shap
+from transformers import BertForSequenceClassification, BertTokenizer
+from preprocess import load_data, preprocess_text
+
+model = BertForSequenceClassification.from_pretrained("../models/fake_news_bert")
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+df = load_data("../data/fake_news.csv")
+encodings = preprocess_text(df['text'], tokenizer)
+
+explainer = shap.Explainer(model)
+shap_values = explainer(encodings)
+shap.summary_plot(shap_values, encodings)
