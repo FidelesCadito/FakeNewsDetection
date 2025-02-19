@@ -1,0 +1,11 @@
+from src.train import train_model
+from src.evaluate import evaluate_model
+
+if __name__ == "__main__":
+    print("🚀 Starting Fake News Detection Model Training...")
+    train_model("./data/fake_news.csv", model_type="bert")
+    train_model("./data/fake_news.csv", model_type="roberta")
+
+    print("\n🔍 Evaluating Models...")
+    evaluate_model("./data/fake_news.csv", "./models/fake_news_bert", "bert")
+    evaluate_model("./data/fake_news.csv", "./models/fake_news_roberta", "roberta")
