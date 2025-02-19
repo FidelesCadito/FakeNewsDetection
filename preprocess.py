@@ -1,0 +1,17 @@
+import pandas as pd
+from transformers import BertTokenizer
+
+def load_data(file_path):
+    """Load dataset into a pandas DataFrame."""
+    df = pd.read_csv(file_path)
+    return df
+
+def preprocess_text(texts, tokenizer, max_length=512):
+    """Tokenize and prepare text for BERT model."""
+    return tokenizer(texts.tolist(), padding=True, truncation=True, max_length=max_length, return_tensors="pt")
+
+if __name__ == "__main__":
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+    df = load_data("../data/fake_news.csv")
+    tokenized_texts = preprocess_text(df['text'], tokenizer)
+    print("✅ Preprocessing complete.")
