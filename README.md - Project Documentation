@@ -1,0 +1,9 @@
+# Fake News Detection Using Transformer-Based Models
+
+## 📜 Overview
+This project utilizes **BERT** and **RoBERTa** models for fake news classification using the **LIAR** and **ISOT** datasets. The models are compared based on accuracy, F1-score, and ROC-AUC.
+
+## 🚀 How to Run
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
