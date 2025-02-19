@@ -8,4 +8,4 @@ if __name__ == "__main__":
 
     print("\n🔍 Evaluating Models...")
     evaluate_model("./data/fake_news.csv", "./models/fake_news_bert", "bert")
-    evaluate_model("./data/fake_news.csv", "./models/fake_news_roberta", "roberta")
+    evaluate_model("./data/fake_news.csv", "./models/fake_news_roberta", "roberta") 
