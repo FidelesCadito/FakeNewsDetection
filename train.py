@@ -1,0 +1,35 @@
+from transformers import BertForSequenceClassification, RobertaForSequenceClassification, Trainer, TrainingArguments
+from sklearn.model_selection import train_test_split
+from preprocess import load_data, preprocess_text
+from transformers import BertTokenizer, RobertaTokenizer
+import torch
+
+def train_model(data_path, model_type="bert"):
+    """Train BERT or RoBERTa model for fake news classification."""
+    df = load_data(data_path)
+    df['label'] = df['label'].map({'real': 0, 'fake': 1})
+
+    train_texts, val_texts, train_labels, val_labels = train_test_split(df['text'], df['label'], test_size=0.2)
+
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased') if model_type == "bert" else RobertaTokenizer.from_pretrained('roberta-base')
+    train_encodings = preprocess_text(train_texts, tokenizer)
+    val_encodings = preprocess_text(val_texts, tokenizer)
+
+    model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2) if model_type == "bert" else RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=2)
+
+    training_args = TrainingArguments(
+        output_dir='./results',
+        evaluation_strategy="epoch",
+        per_device_train_batch_size=8,
+        per_device_eval_batch_size=8,
+        num_train_epochs=3,
+        save_steps=500
+    )
+
+    trainer = Trainer(model=model, args=training_args, train_dataset=(train_encodings, train_labels), eval_dataset=(val_encodings, val_labels))
+    trainer.train()
+    model.save_pretrained(f"../models/fake_news_{model_type}")
+
+if __name__ == "__main__":
+    train_model("../data/fake_news.csv", model_type="bert")
+    train_model("../data/fake_news.csv", model_type="roberta")
