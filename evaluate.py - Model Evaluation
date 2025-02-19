@@ -21,3 +21,4 @@ def evaluate_model(data_path, model_path, model_type="bert"):
 if __name__ == "__main__":
     evaluate_model("../data/fake_news.csv", "../models/fake_news_bert", "bert")
     evaluate_model("../data/fake_news.csv", "../models/fake_news_roberta", "roberta")
+ 
