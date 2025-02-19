@@ -32,4 +32,4 @@ def train_model(data_path, model_type="bert"):
 
 if __name__ == "__main__":
     train_model("../data/fake_news.csv", model_type="bert")
-    train_model("../data/fake_news.csv", model_type="roberta")
+    train_model("../data/fake_news.csv", model_type="roberta") 
