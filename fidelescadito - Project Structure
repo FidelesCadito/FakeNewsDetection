@@ -1,0 +1,14 @@
+📂 FakeNewsDetection
+│── 📂 data                # Raw & processed datasets
+│── 📂 models              # Saved trained models
+│── 📂 notebooks           # Jupyter notebooks for exploration
+│── 📂 src                 # Python scripts
+│    │── preprocess.py     # Data preprocessing
+│    │── train.py          # Model training (BERT, RoBERTa, LSTM)
+│    │── evaluate.py       # Model evaluation & visualization
+│    │── interpret.py      # SHAP analysis for interpretability
+│── main.py                # Main script to execute entire pipeline
+│── requirements.txt       # Dependencies
+│── README.md              # Project documentation
+│── .gitignore             # Ignore unnecessary files
+
