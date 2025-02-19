@@ -14,4 +14,4 @@ if __name__ == "__main__":
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     df = load_data("../data/fake_news.csv")
     tokenized_texts = preprocess_text(df['text'], tokenizer)
-    print("✅ Preprocessing complete.")
+    print("✅ Preprocessing complete.") 
